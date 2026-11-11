@@ -5,8 +5,8 @@ export function TaskList({ tasks }: { tasks: Task[] }) {
   if (tasks.length === 0) return <p>No tasks yet.</p>;
   return (
     <ul>
-      {tasks.map((t) => (
-        <li key={t.id}>{t.done ? "Done" : "Open"}, {t.title}</li>
+      {tasks.map((task) => (
+        <li key={task.id}>{task.done ? "Done" : "Open"}, {task.title}</li>
       ))}
     </ul>
   );

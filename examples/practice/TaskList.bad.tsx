@@ -7,10 +7,10 @@ export function TaskList({ tasks, onRemove }: { tasks: Task[]; onRemove: (id: st
   // const doneTasks = tasks.filter((task) => task.done);
   return (
     <ul>
-      {tasks.map((t) => (
-        <li key={t.id}>
-          {t.done ? "Done" : "Open"}, {t.title}
-          <button onClick={() => onRemove(t.id)}>x</button>
+      {tasks.map((task) => (
+        <li key={task.id}>
+          {task.done ? "Done" : "Open"}, {task.title}
+          <button onClick={() => onRemove(task.id)}>x</button>
         </li>
       ))}
     </ul>
