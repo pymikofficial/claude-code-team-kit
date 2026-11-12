@@ -45,5 +45,23 @@ The CLAUDE.md files and the rules travel with the repo. Auto memory stays on eac
 Treat auto memory as a local staging area. Leave personal habits and machine quirks there. When Claude learns something true for the whole project, such as an API edge case or a test convention, move it into `CLAUDE.md` or `.claude/rules/` through a pull request so the team can review it.
 Credit for this rule goes to Sarvesh Talele, from a LinkedIn comment thread.
 
+## What is inside (part 3), an outside tool
+
+| Piece | File | What it does |
+|---|---|---|
+| Project MCP config | `.mcp.json` | Connects everyone on the team to Context7, a service that returns current library docs |
+| Team rule | `CLAUDE.md`, section Outside tools | Tells Claude to check current docs before writing library code, and keeps keys out of the shared file |
+
+`.mcp.json` sits in the repo, so the whole team gets the same tool. Claude Code asks each person to approve it the first time, because a shared file should not switch on outside tools silently.
+
+### Try it
+1. Start `claude` in this folder and approve the `context7` server when asked.
+2. Type `/mcp` and check that `context7` shows as connected.
+3. Ask, `Use context7 to check the current React docs on keys in lists, then tell me whether frontend/src/TaskList.tsx follows them.`
+
+### Before you add a server
+- Add only servers the team has checked. A tool in `.mcp.json` runs for everyone who approves it.
+- Keys never go in `.mcp.json`. If a server needs one, each person adds it in their own local config.
+
 ## Coming next
-MCP setup and a plan mode test on three task sizes.
+A plan mode test on three task sizes.

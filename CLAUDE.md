@@ -23,6 +23,10 @@ Run the tests and the linter before saying a change is done.
 ## Coding standards
 @docs/coding-standards.md
 
+## Outside tools
+- The project connects to Context7 through `.mcp.json`. Before writing code that depends on a library's API, look up the current docs with it instead of relying on memory.
+- Never put keys or tokens in `.mcp.json`. It is shared through git.
+
 ## Where the other rules live
 - Folder-specific rules sit in `.claude/rules/`. Each one loads only when Claude works on matching files.
 - The API has its own `api/CLAUDE.md` for API-only conventions.
