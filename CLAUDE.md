@@ -20,6 +20,10 @@ Run the tests and the linter before saying a change is done.
 - Never commit secrets. Keys live in `.env`, which is git-ignored.
 - Ask before adding a new dependency.
 
+## When to plan first
+- If a change touches more than one part of the project (frontend, API, database, tests), or there is more than one sensible way to build it, share a plan and wait for approval before editing any file.
+- A small, clear change in one file can go straight ahead.
+
 ## Coding standards
 @docs/coding-standards.md
 

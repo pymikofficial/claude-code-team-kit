@@ -63,5 +63,29 @@ Credit for this rule goes to Sarvesh Talele, from a LinkedIn comment thread.
 - Add only servers the team has checked. A tool in `.mcp.json` runs for everyone who approves it.
 - Keys never go in `.mcp.json`. If a server needs one, each person adds it in their own local config.
 
+## What is inside (part 4), plan first or just build
+
+The same Claude Code session got two jobs of different sizes.
+
+| Job | How it ran | What happened |
+|---|---|---|
+| Add one test for an empty task id | Straight ahead, in auto mode | One file, 8 lines added, done in 19 seconds |
+| Let users mark a task as done, from the button down to the database | Plan mode | Claude read the project, asked two questions, then wrote a plan without changing any file |
+
+The two questions were real gaps.
+1. The kit had no test setup, so no test could run. Which test tool should the plan add?
+2. The API has no web server. How should the button reach it?
+
+The plan came back with 6 steps, 12 tests and 3 suggested commits, and it listed every team rule the change had to follow. It was not approved, because the plan was the test. Afterwards `git status` showed only the first job's test file as changed. The plan is saved in `examples/plans/mark-task-done.md`.
+
+What changed in the kit after the test
+- `package.json`, `tsconfig.json` and `vitest.config.ts` add Vitest and a TypeScript type check, so `npm test` and `npm run lint` now work. The project notes already asked for both before a change counts as done.
+- `CLAUDE.md` has a new section, When to plan first. A change that touches more than one part of the project, or has more than one sensible design, gets a plan and an approval before any edit.
+
+### Try it
+1. Run `npm install`, then `npm test`. Both tests should pass.
+2. Start `claude` and press Shift+Tab until the line under the input box says plan mode on.
+3. Paste the request from `examples/plans/mark-task-done.md` and compare your plan with the saved one. The kit has a test setup now, so your plan should skip the first question.
+
 ## Coming next
-A plan mode test on three task sizes.
+The built-in tools Claude uses to read, search and edit files, and how it picks between them.
