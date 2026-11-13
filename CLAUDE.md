@@ -8,10 +8,10 @@ A small task tracker for a business team. A React frontend in `frontend/`, a Nod
 
 ## Commands
 - Install: `npm install`
-- Run everything: `npm run dev`
-- Tests: `npm test`
-- Lint: `npm run lint`
+- Tests: `npm test` (Vitest)
+- Lint: `npm run lint` (a TypeScript type check for now, there is no ESLint yet)
 
+There is no app to run yet. The sample code exists so the rules have real files to apply to.
 Run the tests and the linter before saying a change is done.
 
 ## How we work
