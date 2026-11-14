@@ -87,5 +87,22 @@ What changed in the kit after the test
 2. Start `claude` and press Shift+Tab until the line under the input box says plan mode on.
 3. Paste the request from `examples/plans/mark-task-done.md` and compare your plan with the saved one. The kit has a test setup now, so your plan should skip the first question.
 
+## What is inside (part 5), the built-in tools
+
+Claude Code has built-in tools, each made for one job. Grep searches inside files, Glob finds files by name, Read opens a file, Edit changes exact lines, Write creates or replaces a whole file, and Bash runs commands.
+
+Two jobs in this kit showed how Claude picks between them.
+
+| Job | Tools Claude picked | Result |
+|---|---|---|
+| Find where `getTaskRoute` is defined and used, and list every test file, without changing anything | Grep for the name, Glob for test file names, Read for the two files that mattered, then read-only git commands to double-check, since the search tools may skip hidden folders | One definition, one test file, both searches matched, 39 seconds |
+| Change the 404 message in `getTaskRoute`, then run the tests | One search, one Read, one Edit that swapped a single line, then Bash for `npm test` and `npm run lint` | 2 of 2 tests passed, 17 seconds |
+
+Claude also pointed out that the tests only checked status codes, so they would have passed with any message. The tests in `tests/tasks.test.ts` now check the full error body as well, so a changed message fails a test until someone updates it on purpose.
+
+### Try it
+1. Start `claude` and ask, `Find where getTaskRoute is defined and every file that uses it. Do not change anything. At the end, list each tool you used and why.`
+2. Compare the tools it picks with the table above.
+
 ## Coming next
-The built-in tools Claude uses to read, search and edit files, and how it picks between them.
+Keeping Claude's context clean while it explores a bigger project.
